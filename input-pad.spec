@@ -1,14 +1,14 @@
 Summary:	On-screen Input Pad to Send Characters with Mouse
 Name:		input-pad
 Version:	1.0.1
-Release:	1
+Release:	2
 License:	LGPL v2+
 Group:		Libraries
 Source0:	http://input-pad.googlecode.com/files/%{name}-%{version}.tar.gz
 # Source0-md5:	320461990a87fc31fd504c438fe9707a
 URL:		http://code.google.com/p/input-pad/
 BuildRequires:	eekboard-devel
-BuildRequires:	gtk+2-devel
+BuildRequires:	gtk+3-devel
 BuildRequires:	libxklavier-devel >= 4.0
 BuildRequires:	libxml2-devel
 BuildRequires:	pkgconfig
@@ -51,6 +51,7 @@ The input-pad-eek package contains eekboard extension module
 
 %build
 %configure \
+	--with-gtk=3.0 \
 	--enable-eek \
 	--enable-xtest
 
