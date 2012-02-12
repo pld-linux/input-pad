@@ -1,7 +1,7 @@
 Summary:	On-screen Input Pad to Send Characters with Mouse
 Name:		input-pad
 Version:	1.0.1
-Release:	2
+Release:	3
 License:	LGPL v2+
 Group:		Libraries
 Source0:	http://input-pad.googlecode.com/files/%{name}-%{version}.tar.gz
