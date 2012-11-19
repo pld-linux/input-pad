@@ -1,0 +1,11 @@
+--- input-pad-1.0.1/input-pad/geometry-gdk.c~	2011-05-19 05:27:32.000000000 +0200
++++ input-pad-1.0.1/input-pad/geometry-gdk.c	2012-11-19 01:17:50.980693017 +0100
+@@ -581,7 +581,7 @@
+         }
+         line = g_string_free (string, FALSE);
+         if (line) {
+-            g_debug (line);
++            g_debug ("%s", line);
+             g_free (line);
+         }
+         list = list->next;
