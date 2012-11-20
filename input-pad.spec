@@ -8,6 +8,7 @@ Group:		Libraries
 #Source0Download: http://code.google.com/p/input-pad/downloads/list
 Source0:	http://input-pad.googlecode.com/files/%{name}-%{version}.tar.gz
 # Source0-md5:	cfb03c042e699858d80e7c95efbc2092
+Patch0:		%{name}-format-security.patch
 URL:		http://code.google.com/p/input-pad/
 BuildRequires:	eekboard-devel >= 1.0.6
 BuildRequires:	glib2-devel >= 1:2.8
@@ -77,6 +78,7 @@ input-pad.
 
 %prep
 %setup -q
+%patch0 -p1
 
 %build
 %configure \
