@@ -1,18 +1,17 @@
 Summary:	On-screen Input Pad to Send Characters with Mouse
 Summary(pl.UTF-8):	Pole wprowadzania znaków na ekranie przy użyciu myszy
 Name:		input-pad
-Version:	1.0.2
-Release:	3
+Version:	1.0.3
+Release:	1
 License:	LGPL v2+
 Group:		Libraries
 #Source0Download: http://code.google.com/p/input-pad/downloads/list
 Source0:	http://input-pad.googlecode.com/files/%{name}-%{version}.tar.gz
-# Source0-md5:	cfb03c042e699858d80e7c95efbc2092
-Patch0:		%{name}-format-security.patch
+# Source0-md5:	70f3d0273da97d576e80b4f45a112fec
 URL:		http://code.google.com/p/input-pad/
 BuildRequires:	eekboard-devel >= 1.0.6
 BuildRequires:	glib2-devel >= 1:2.8
-BuildRequires:	gobject-introspection-devel >= 0.6.8
+BuildRequires:	gobject-introspection-devel >= 0.9.6
 BuildRequires:	gtk+3-devel >= 3.0
 BuildRequires:	intltool >= 0.35.0
 BuildRequires:	libxklavier-devel >= 4.0
@@ -78,7 +77,6 @@ input-pad.
 
 %prep
 %setup -q
-%patch0 -p1
 
 %build
 %configure \
@@ -123,6 +121,7 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_libdir}/%{name}-1.0/modules/xkeysend/libinput-pad-xtest-gdk.so
 %{_datadir}/%{name}
 %{_pixmapsdir}/input-pad.png
+%{_mandir}/man1/input-pad.1*
 
 %files devel
 %defattr(644,root,root,755)
