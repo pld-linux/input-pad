@@ -2,7 +2,7 @@ Summary:	On-screen Input Pad to Send Characters with Mouse
 Summary(pl.UTF-8):	Pole wprowadzania znaków na ekranie przy użyciu myszy
 Name:		input-pad
 Version:	1.0.3
-Release:	1
+Release:	2
 License:	LGPL v2+
 Group:		Libraries
 #Source0Download: http://code.google.com/p/input-pad/downloads/list
@@ -24,8 +24,8 @@ BuildRequires:	xorg-lib-libXtst-devel
 BuildRequires:	xorg-lib-libxkbfile-devel
 Requires:	glib2 >= 1:2.8
 Requires:	gtk+3 >= 3.0
-Requires:	libxklavier-devel >= 4.0
-Requires:	libxml2-devel >= 2.0
+Requires:	libxklavier >= 4.0
+Requires:	libxml2 >= 2.0
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
@@ -43,6 +43,8 @@ Group:		Development/Libraries
 Requires:	%{name} = %{version}-%{release}
 Requires:	glib2-devel >= 1:2.8
 Requires:	gtk+3-devel >= 3.0
+Requires:	libxklavier-devel >= 4.0
+Requires:	libxml2-devel >= 2.0
 
 %description devel
 The input-pad-devel package contains the header files.
