@@ -5,10 +5,10 @@ Version:	1.0.3
 Release:	5
 License:	LGPL v2+
 Group:		Libraries
-#Source0Download: http://code.google.com/p/input-pad/downloads/list
-Source0:	http://input-pad.googlecode.com/files/%{name}-%{version}.tar.gz
+#Source0Download: https://github.com/fujiwarat/input-pad/releases
+Source0:	https://github.com/fujiwarat/input-pad/releases/download/%{version}/%{name}-%{version}.tar.gz
 # Source0-md5:	70f3d0273da97d576e80b4f45a112fec
-URL:		http://code.google.com/p/input-pad/
+URL:		https://github.com/fujiwarat/input-pad
 BuildRequires:	eekboard-devel >= 1.0.6
 BuildRequires:	glib2-devel >= 1:2.8
 BuildRequires:	gobject-introspection-devel >= 0.9.6
