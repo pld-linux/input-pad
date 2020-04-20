@@ -2,7 +2,7 @@ Summary:	On-screen Input Pad to Send Characters with Mouse
 Summary(pl.UTF-8):	Pole wprowadzania znaków na ekranie przy użyciu myszy
 Name:		input-pad
 Version:	1.0.3
-Release:	5
+Release:	6
 License:	LGPL v2+
 Group:		Libraries
 #Source0Download: https://github.com/fujiwarat/input-pad/releases
