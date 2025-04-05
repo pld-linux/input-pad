@@ -1,31 +1,30 @@
 Summary:	On-screen Input Pad to Send Characters with Mouse
 Summary(pl.UTF-8):	Pole wprowadzania znaków na ekranie przy użyciu myszy
 Name:		input-pad
-Version:	1.0.3
-Release:	6
+Version:	1.1.0
+Release:	1
 License:	LGPL v2+
 Group:		Libraries
 #Source0Download: https://github.com/fujiwarat/input-pad/releases
 Source0:	https://github.com/fujiwarat/input-pad/releases/download/%{version}/%{name}-%{version}.tar.gz
-# Source0-md5:	70f3d0273da97d576e80b4f45a112fec
+# Source0-md5:	aa4684c08bc8b5c7f91b22bd3885a3cd
 URL:		https://github.com/fujiwarat/input-pad
 BuildRequires:	eekboard-devel >= 1.0.6
-BuildRequires:	glib2-devel >= 1:2.8
+BuildRequires:	gettext-tools >= 0.19.8
+BuildRequires:	glib2-devel >= 1:2.37
 BuildRequires:	gobject-introspection-devel >= 0.9.6
-BuildRequires:	gtk+3-devel >= 3.0
-BuildRequires:	intltool >= 0.35.0
+BuildRequires:	gtk+3-devel >= 3.12
 BuildRequires:	libxklavier-devel >= 4.0
 BuildRequires:	libxml2-devel >= 2.0
 BuildRequires:	pkgconfig
-BuildRequires:	python-devel >= 1:2.5
-BuildRequires:	swig-python
 BuildRequires:	xorg-lib-libX11-devel
 BuildRequires:	xorg-lib-libXtst-devel
 BuildRequires:	xorg-lib-libxkbfile-devel
-Requires:	glib2 >= 1:2.8
-Requires:	gtk+3 >= 3.0
+Requires:	glib2 >= 1:2.37
+Requires:	gtk+3 >= 3.12
 Requires:	libxklavier >= 4.0
 Requires:	libxml2 >= 2.0
+Obsoletes:	python-input-pad < 1.1
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
@@ -41,8 +40,8 @@ Summary:	Development files for input-pad
 Summary(pl.UTF-8):	Pliki programistyczne biblioteki input-pad
 Group:		Development/Libraries
 Requires:	%{name} = %{version}-%{release}
-Requires:	glib2-devel >= 1:2.8
-Requires:	gtk+3-devel >= 3.0
+Requires:	glib2-devel >= 1:2.37
+Requires:	gtk+3-devel >= 3.12
 Requires:	libxklavier-devel >= 4.0
 Requires:	libxml2-devel >= 2.0
 
@@ -51,18 +50,6 @@ The input-pad-devel package contains the header files.
 
 %description devel -l pl.UTF-8
 Ten pakiet zawiera pliki nagłówkowe biblioteki input-pad.
-
-%package -n python-input-pad
-Summary:	Input Pad for Python
-Summary(pl.UTF-8):	Biblioteka Input Pad dla Pythona
-Group:		Libraries/Python
-Requires:	%{name} = %{version}-%{release}
-
-%description -n python-input-pad
-The input-pad-python package contains the Python wrapper files.
-
-%description -n python-input-pad -l pl.UTF-8
-Ten pakiet zawiera pliki obudowania Pythona dla biblioteki input-pad.
 
 %package eek
 Summary:	Input Pad with eekboard extension
@@ -82,9 +69,7 @@ input-pad.
 
 %build
 %configure \
-	--with-gtk=3.0 \
 	--enable-eek \
-	--enable-pygobject2 \
 	--enable-xtest
 
 %{__make}
@@ -96,10 +81,8 @@ rm -rf $RPM_BUILD_ROOT
 	DESTDIR=$RPM_BUILD_ROOT
 
 %{__rm} $RPM_BUILD_ROOT%{_libdir}/*.la
-%{__rm} $RPM_BUILD_ROOT%{_libdir}/%{name}-1.0/modules/xkeysend/*.la
-%{__rm} $RPM_BUILD_ROOT%{_libdir}/%{name}-1.0/modules/kbdui/*.la
-%{__rm} $RPM_BUILD_ROOT%{py_sitedir}/%{name}-1.0/*.la
-%py_postclean
+%{__rm} $RPM_BUILD_ROOT%{_libdir}/%{name}-1.1/modules/xkeysend/*.la
+%{__rm} $RPM_BUILD_ROOT%{_libdir}/%{name}-1.1/modules/kbdui/*.la
 
 %find_lang %{name}
 
@@ -113,32 +96,25 @@ rm -rf $RPM_BUILD_ROOT
 %defattr(644,root,root,755)
 %doc AUTHORS ChangeLog README TODO
 %attr(755,root,root) %{_bindir}/input-pad
-%attr(755,root,root) %{_libdir}/libinput-pad.so.*.*.*
-%attr(755,root,root) %ghost %{_libdir}/libinput-pad.so.1
-%{_libdir}/girepository-1.0/InputPad-1.0.typelib
-%dir %{_libdir}/%{name}-1.0
-%dir %{_libdir}/%{name}-1.0/modules
-%dir %{_libdir}/%{name}-1.0/modules/kbdui
-%dir %{_libdir}/%{name}-1.0/modules/xkeysend
-%attr(755,root,root) %{_libdir}/%{name}-1.0/modules/xkeysend/libinput-pad-xtest-gdk.so
+%attr(755,root,root) %{_libdir}/libinput-pad-1.0.so.*.*.*
+%ghost %{_libdir}/libinput-pad-1.0.so.1
+%{_libdir}/girepository-1.0/InputPad-1.1.typelib
+%dir %{_libdir}/%{name}-1.1
+%dir %{_libdir}/%{name}-1.1/modules
+%dir %{_libdir}/%{name}-1.1/modules/kbdui
+%dir %{_libdir}/%{name}-1.1/modules/xkeysend
+%attr(755,root,root) %{_libdir}/%{name}-1.1/modules/xkeysend/libinput-pad-xtest-gdk.so
 %{_datadir}/%{name}
 %{_pixmapsdir}/input-pad.png
 %{_mandir}/man1/input-pad.1*
 
 %files devel
 %defattr(644,root,root,755)
-%attr(755,root,root) %{_libdir}/libinput-pad.so
-%{_includedir}/%{name}-1.0
+%{_libdir}/libinput-pad-1.0.so
+%{_includedir}/input-pad-1.1
 %{_pkgconfigdir}/input-pad.pc
-%{_datadir}/gir-1.0/InputPad-1.0.gir
-
-%files -n python-input-pad
-%defattr(644,root,root,755)
-%dir %{py_sitedir}/%{name}-1.0
-%attr(755,root,root) %{py_sitedir}/%{name}-1.0/_input_pad*.so
-%{py_sitedir}/%{name}-1.0/*.py[co]
-%{py_sitedir}/pyinput_pad.pth
+%{_datadir}/gir-1.0/InputPad-1.1.gir
 
 %files eek
 %defattr(644,root,root,755)
-%attr(755,root,root) %{_libdir}/%{name}-1.0/modules/kbdui/libinput-pad-eek-gtk.so
+%attr(755,root,root) %{_libdir}/%{name}-1.1/modules/kbdui/libinput-pad-eek-gtk.so
